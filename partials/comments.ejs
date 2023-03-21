@@ -1,0 +1,5 @@
+<% for(var i = 0; i < comments.length; i++) { %>
+    <p><%- helpers.formatText(comments[i].comment_text) %></p>
+    <p class="text-grey text-sm"><strong>Created:</strong> <%= helpers.formatDate(comments[i].date_created) %></p>
+    <hr>
+<% } %>

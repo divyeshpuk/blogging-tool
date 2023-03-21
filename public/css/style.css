@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #EEE;
+    margin: 0;
+    color: #333;
+}
+
+/* Text */
+
+p, input {
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+a {
+    text-decoration: none;
+    color: royalblue;
+}
+
+a:hover {
+    color: blue;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.text-xs  {
+    font-size: 0.8em;
+}
+
+.text-sm {
+    font-size: 0.9em;
+}
+
+.text-grey {
+    color: #444;
+}
+
+.text-crimson {
+    color: crimson;
+}
+
+.text-gold {
+    color: darkgoldenrod;
+}
+
+/* Button */
+
+.btn {
+    background-color: transparent;
+    font-size: 1em;
+    font-weight: bold;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 0.5em 0.6em;
+}
+
+.btn .icon {
+    position: absolute;
+}
+
+.btn .icon + span {
+    margin-left: 1.75em;
+}
+
+button.btn:hover {
+    cursor: pointer;
+}
+
+.btn-default {
+    color: #444;
+    border-color: #767676;
+}
+
+.btn-default:hover {
+    color: #333;
+    border-color: #333;
+}
+
+.btn-primary {
+    color: royalblue;
+    border-color: royalblue;
+}
+
+.btn-primary:hover {
+    color: blue;
+    border-color: blue;
+}
+
+.btn-group .btn {
+    margin-right: 0.5em;
+}
+
+.user-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* Form elements */
+
+textarea, input {
+    padding: 1%;
+    width: 97.5%;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.25em;
+}
+
+/* Misc */
+
+.d-flex {
+    display: flex;
+}
+
+.d-none {
+    display: none;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.mb-1 {
+    margin-bottom: 1em;
+}
+
+.header {
+    position: relative;
+}
+
+.page {
+    width: 50%;
+    padding: 0.75em;
+    margin: 0 auto;
+    background-color: #FFF;
+}
+
+.icon {
+    width: 1.25em;
+    fill: currentColor;
+}

@@ -1,0 +1,18 @@
+<form action="/blog/author<%= reqUrl %>" method="post">
+    <div class="mb-1">
+        <label for="title">Title</label>
+        <input type="text" value="<%= article_title %>" name="title" id="title" autocomplete="off">
+    </div>
+    <div class="mb-1">
+        <label for="subtitle">Subtitle</label>
+        <input type="text" value="<%= article_subtitle %>" name="subtitle" id="subtitle" autocomplete="off">
+    </div>
+    <div class="mb-1">
+        <label for="text">Text</label>
+        <textarea rows="20" name="text" id="text" autocomplete="off"><%= article_text %></textarea>
+    </div>
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-default" type="submit">Submit</button>
+        <a class="btn btn-primary" href="/blog/author/articles">Back to articles</a>
+    </div>
+</form>

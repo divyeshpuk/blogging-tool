@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <title>Article</title>
+</head>
+<body>
+    <div class="page">
+        <%- include ('../partials/header.ejs'); %>
+
+        <h1><%= article_title %></h1>
+        <h2><%= article_subtitle %></h2>
+        <p class="text-grey text-sm"><strong>Published:</strong> <%= helpers.formatDate(date_modified) %></p>
+        <p><%- helpers.formatText(article_text) %></p>
+        <hr>
+        <form action="/blog/articles/<%= article_id %>/like/update" method="post">
+            <input type="text" value="<%= article_likes + 1 %>" name="like" hidden>
+            <button class="btn btn-default" type="submit">
+                <svg class="icon" viewBox="0 0 122.88 106.16">
+                    <use href="#thumbs-up" xlink:href="#thumbs-up"/>
+                </svg>
+                <span><%= article_likes %></span>
+            </button>
+        </form>
+        <br>
+        <form action="/blog/articles/<%= article_id %>/comment/create" method="post">
+            <div class="mb-1">
+                <textarea name="comment" rows="7" placeholder="Add a comment" autocomplete="off"></textarea>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-default" type="submit">Submit</button>
+                <a class="btn btn-primary" href="/blog<% if (author) { %>/author/<%} else { %>/<% } %>articles">Back to articles</a>
+            </div>
+        </form>
+        <hr>
+
+        <%- include ('../partials/comments.ejs'); %>
+        <%- include ('../partials/footer.ejs'); %>
+    </div>
+    <%- include ('../partials/icons.ejs'); %>
+</body>
+</html>

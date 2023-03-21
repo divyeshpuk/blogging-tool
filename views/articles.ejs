@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <title>Articles</title>
+</head>
+<body>
+    <div class="page">
+        <%- include ('../partials/header.ejs'); %>
+
+        <% if (author) { %>
+            <h1 class="text-grey">Author&rsquo;s playground</h1>
+            <p>
+                <a href="/blog/author/article/create" class="btn">
+                    <svg class="icon" viewBox="0 0 20 20">
+                        <use href="#pen" xlink:href="#pen"/>
+                    </svg>
+                    <span>Create a new draft</span>
+                </a>
+            </p>
+            <hr>
+            <% if (drafts.length > 0) { %>
+                <h2 class="text-grey">Draft articles</h2>
+                <hr>
+                <% for(var i = 0; i < drafts.length; i++) { %>
+                    <h1><%= drafts[i].article_title %></h1>
+                    <h2><%= drafts[i].article_subtitle %></h2>
+                    <div class="d-flex btn-group">
+                        <a href="/blog/author/articles/<%= drafts[i].article_id %>/edit" class="btn">
+                            <svg class="icon" viewBox="0 0 20 20">
+                                <use href="#pen" xlink:href="#pen"/>
+                            </svg>
+                            <span>Edit draft</span>
+                        </a>
+                        <form action="/blog/author/articles/<%= drafts[i].article_id %>/publish" method="post">
+                            <input type="text" value="<%= drafts[i].article_title %>" name="title" hidden>
+                            <input type="text" value="<%= drafts[i].article_subtitle %>" name="subtitle" hidden>
+                            <input type="text" value="<%= drafts[i].article_text %>" name="text" hidden>
+                            <button class="btn btn-primary" type="submit">
+                                <svg class="icon" viewBox="0 0 1025 1024">
+                                    <use href="#plane" xlink:href="#plane"/>
+                                </svg>
+                                <span>Publish</span>
+                            </button>
+                        </form>
+                        <form action="/blog/author/articles/<%= drafts[i].article_id %>/delete" method="post">
+                            <button class="btn btn-primary" type="submit">
+                                <svg class="icon" viewBox="0 0 1024 1024">
+                                    <use href="#bin" xlink:href="#bin"/>
+                                </svg>
+                                <span>Delete</span>
+                            </button>
+                        </form>
+                    </div>
+                    <p class="text-grey text-sm">
+                        <span><strong>Created:</strong> <%= helpers.formatDate(drafts[i].date_created) %></span><br>
+                        <span><strong>Modified:</strong> <%= helpers.formatDate(drafts[i].date_modified) %></span>
+                    </p>
+                    <hr>
+                <% } %>
+            <% } %>
+        <% } %>
+        <% if (published.length > 0) { %>
+            <h2 class="text-grey">Published articles</h2>
+            <hr>
+        <% } %>
+        <% for(var i = 0; i < published.length; i++) { %>
+            <h1><a href="/blog<% if (author) { %>/author/<%} else { %>/<% } %>articles/<%= published[i].article_id %>?title=<%= helpers.encodeURI(published[i].article_title) %>"><%= published[i].article_title %></a></h1>
+            <h2><%= published[i].article_subtitle %></h2>
+            <p class="text-grey text-sm"><strong>Published:</strong> <%= helpers.formatDate(published[i].date_modified) %></p>
+            <% if (author) { %>
+                <div class="d-flex btn-group mb-1">
+                    <div class="btn btn-default">
+                        <svg class="icon" viewBox="0 0 122.88 106.16">
+                            <use href="#thumbs-up" xlink:href="#thumbs-up"/>
+                        </svg>
+                        <span><%= published[i].article_likes %></span>
+                    </div>
+                    <a href="/blog/articles/<%= published[i].article_id %>" class="btn">
+                        <svg class="icon" viewBox="0 0 1024 1024">
+                            <use href="#share-arrow" xlink:href="#share-arrow"/>
+                        </svg>
+                        <span>Share</span>
+                    </a>
+                    <form action="/blog/author/articles/<%= published[i].article_id %>/delete" method="post">
+                        <button class="btn btn-primary" type="submit">
+                            <svg class="icon" viewBox="0 0 1024 1024">
+                                <use href="#bin" xlink:href="#bin"/>
+                            </svg>
+                            <span>Delete</span>
+                        </button>
+                    </form>
+                </div>
+            <% } %>
+            <hr>
+        <% } %>
+
+        <%- include ('../partials/footer.ejs'); %>
+    </div>
+    <%- include ('../partials/icons.ejs'); %>
+</body>
+</html>

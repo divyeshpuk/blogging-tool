@@ -1,0 +1,23 @@
+<header class="header">
+    <!-- Clicking Login or Logout button directs user to the author’s home page or to the public/reader’s home page respectively. -->
+    <% if (typeof author !== 'undefined' && author) { %>
+        <a href="/blog/articles" class="btn btn-default user-btn">Logout</a>
+    <%} else { %>
+        <a href="/blog/author/articles" class="btn btn-default user-btn">Login</a>
+    <% } %>
+
+    <span class="fw-bold text-crimson"><%= header.blog_title %></span><br>
+    <span class="fw-bold text-grey"><%= header.blog_subtitle %><br>&#8212;</span><br>
+    <span class="fw-bold text-gold"><%= header.blog_author %></span>
+    <% if (typeof author !== 'undefined' && author) { %>
+        <p>
+            <a href="/blog/author/settings/edit" class="btn btn-primary">
+                <svg class="icon" viewBox="0 0 20 20">
+                    <use href="#pen" xlink:href="#pen"/>
+                </svg>
+                <span>Edit settings</span>
+            </a>
+        </p>
+    <% } %>
+</header>
+<hr>
